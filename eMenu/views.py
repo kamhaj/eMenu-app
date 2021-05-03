@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.http import HttpResponse, Http404
 from rest_framework import status
@@ -78,3 +80,38 @@ def get_menu_details(request, pk):
     menu_instance = get_object_or_404(Menu, pk=pk)
     serializer = MenuSerializer(menu_instance)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+class DishView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]	            # will deny permission to any unauthenticated user
+
+    ## create one object
+    def post(self, request, format=None):
+        pass
+
+    ## update one object (as a whole; use patch for partial update)
+    def put(self, request, format=None):
+        pass
+
+    ## delete one object
+    def delete(self, request, format=None):
+        pass
+
+
+class MenuView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]	            # will deny permission to any unauthenticated user
+
+    ## create one object
+    def post(self, request, format=None):
+        pass
+
+    ## update one object (as a whole; use patch for partial update)
+    def put(self, request, format=None):
+        pass
+
+    ## delete one object
+    def delete(self, request, format=None):
+        pass
