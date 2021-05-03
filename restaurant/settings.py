@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -107,8 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 TIME_ZONE = 'Etc/GMT-2'
-
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
