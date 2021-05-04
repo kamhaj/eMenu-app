@@ -10,14 +10,18 @@ class Dish(models.Model):
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
     edition_date = models.DateTimeField(default=timezone.now, editable=True)
     is_vegetarian = models.BooleanField(default=False)
-    picture = models.ImageField(upload_to='dishes', default='dishes/default.jpg')
-        
+    picture = models.ImageField(upload_to='dishes', default='dishes/default.jpg')       # TODO needs some sort of encoding probably
+
+    ## change edition date (e.g. on update)
+    def update_edition_date(self):
+        self.edition_date = timezone.now()
+        self.save()
+
     ## return it in a way you want it to be printed out   
     def __str__(self):
         return f'Dish: {self.name}'
 
-
-    # add checks/constraints like price_in_dollars > 0
+    # can add checks/constraints like price_in_dollars > 0
 
 
 class Menu(models.Model):
@@ -25,8 +29,13 @@ class Menu(models.Model):
     description = models.CharField(max_length=200)
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
     edition_date = models.DateTimeField(blank=True, null=True)
-    dishes = models.ManyToManyField(Dish)
+    dishes = models.ManyToManyField(Dish)           # TODO if Dish gets deleted it can lead to empty Menu. We should do sth about it?
 
+    ## change edition date (e.g. on update)
+    def update_edition_date(self):
+        self.edition_date = timezone.now()
+        self.save()
+        
     ## return it in a way you want it to be printed out   
     def __str__(self):
         return f'Menu: {self.name}'
