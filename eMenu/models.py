@@ -21,7 +21,7 @@ class Dish(models.Model):
 
 
 class Menu(models.Model):
-    name = models.CharField(max_length=60, unique=True)
+    name = models.CharField(max_length=60, unique=True)     # could be a primary key
     description = models.CharField(max_length=200)
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
     edition_date = models.DateTimeField(blank=True, null=True)

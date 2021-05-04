@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from celery.schedules import crontab
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default value that will not work')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -47,6 +48,9 @@ INSTALLED_APPS = [
 
     ## Swagger
     'drf_yasg',
+
+    ## Celery
+    'django_celery_beat',    # uses own model to store all schedule related data (migrations needed)
 ]
 
 # DRF settings
@@ -137,9 +141,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# VENV_PATH = os.path.dirname(BASE_DIR)
-# STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -162,3 +163,30 @@ SWAGGER_SETTINGS = {
 REDOC_SETTINGS = {
    'LAZY_RENDERING': False,
 }
+
+
+## Celery & Redis
+# REDIS_URL can be an environmental variable for Redis server (cannot use that on Heroku without credit card)
+CELERY_BROKER_URL = os.getenv('REDIS_URL', "redis://localhost:6379")         # URL that tells Celery how to connect to the message broker (broker holds pending tasks)
+CELERY_RESULT_BACKEND = os.getenv('REDIS_URL', "redis://localhost:6379")     # tells Celery how to connect to the result store; ignore this setting if you choose not to store results
+CELERY_ACCEPT_CONTENT = ['application/json']    # format that task is stored in
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+
+
+
+CELERY_BEAT_SCHEDULE = {
+    "send_email_report": {
+        "task": "restaurant.tasks.send_email_report",       # declares which task to run
+        "schedule": crontab(hour='10', day_of_week='*'),    # sets the interval (can be an integer, a timedelta, or a crontab)
+    },
+    "run_dummy_task": {
+        "task": "restaurant.tasks.dummy_task",
+        "schedule": crontab(minute="*/1"),       
+    },
+}
+
+# handling sending emails
+# test for successful email submission before putting the site into production. Production need SMTP server configured
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
