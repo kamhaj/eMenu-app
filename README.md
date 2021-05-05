@@ -53,11 +53,11 @@ POST, PUT, DELETE - Token authorization <br/>
 ```console
 	pip install -r requirements.txt
 ```
-5. Run Redis service to store/process tasks (download from here: https://github.com/ServiceStack/redis-windows)
+5. Run Redis service (in CMD) to store/process tasks (download from here: https://github.com/ServiceStack/redis-windows)
 ```console
 	redis-server.exe redis.windows.conf
 ```
-7. Run a Celery worker to pick up tasks (sample task invoked every minute was provided for testing purposes)
+7. Run a Celery worker (in separate CMD) to pick up tasks (sample task invoked every minute was provided for testing purposes)
 ```console
 	celery -A restaurant worker -l INFO
 ```
