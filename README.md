@@ -21,18 +21,20 @@ GET methods - no authorization <br/>
 POST, PUT, DELETE - Token authorization <br/>
 
 1.  GET    - to get Dish details  </br></br>
-2.  POST   - to create Dish object (TODO: "picture" field (ImageField) not processed correctly in Swagger) </br></br>
-3.  PUT    - to update Dish fields (TODO: "picture" field (ImageField) not processed correctly in Swagger) </br></br>
-4.  DELETE - to delete Dish </br></br>
+2.  GET    - to get Dishes list  </br></br>
+3.  POST   - to create Dish object (TODO: "picture" field (ImageField) not processed correctly in Swagger) </br></br>
+4.  PUT    - to update Dish fields (TODO: "picture" field (ImageField) not processed correctly in Swagger) </br></br>
+5.  DELETE - to delete Dish </br></br>
 
 model Menu: <br/>
 GET methods - no authorization <br/>
 POST, PUT, DELETE - Token authorization <br/>
 
 1.  GET    - to get Menu details </br></br>
-2.  POST   - to create Menu object (TODO: "dishes" field (ManyToManyField) not processed correctly - Swagger let us use 'name' and 'description' fields only) </br></br>
-3.  PUT    - to update Menu fields (TODO: "dishes" field (ManyToManyField) not processed correctly - Swagger let us use 'name' and 'description' fields only) </br></br>
-4.  DELETE - to delete Menu </br></br>
+2.  GET    - to get Menus list (non empty, meaning - with at least one Dish) </br></br>
+3.  POST   - to create Menu object (TODO: "dishes" field (ManyToManyField) not processed correctly - Swagger let us use 'name' and 'description' fields only) </br></br>
+4.  PUT    - to update Menu fields (TODO: "dishes" field (ManyToManyField) not processed correctly - Swagger let us use 'name' and 'description' fields only) </br></br>
+5.  DELETE - to delete Menu </br></br>
 
 <br/><br/><br/><br/>
 ## Swagger authorization
