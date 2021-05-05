@@ -1,30 +1,33 @@
-# Application using API calls to display/create/edit/delete restaurant menus online. </br></br>
+# Application using API calls <br/> to display/create/edit/delete restaurant menus online. </br></br>
 
 <br/><br/>
 # Deployed on Heroku: 
-base page: 	**https://kamhaj-emenu-app.herokuapp.com**
+## **https://kamhaj-emenu-app.herokuapp.com**
 
 <br/><br/>
-## Django + DRF utilized.
-## Celery + Redis used for running periodic tasks (sending emails everyday at 10 a.m.) (no third party email service specified, requires configuration)
-## Documentation in Swagger: https://github.com/axnsan12/drf-yasg
+## Django + DRF utilized. <br/>
+## Celery + Redis used for running periodic tasks
+(sending emails everyday at 10 a.m.) <br/>
+(no third party email service specified, requires configuration) <br/><br/>
+## Documentation in Swagger:
+<br/> https://github.com/axnsan12/drf-yasg
 
 <br/><br/><br/><br/>
 ## API usage:
 https://kamhaj-emenu-app.herokuapp.com/swagger/
 
-model Dish:
-GET methods - no authorization 
-POST, PUT, DELETE - Token authorization 
+model Dish:<br/>
+GET methods - no authorization <br/>
+POST, PUT, DELETE - Token authorization <br/>
 
 1.  GET    - to get Dish details  </br></br>
 2.  POST   - to create Dish object (TODO: "picture" field (ImageField) not processed correctly in Swagger) </br></br>
 3.  PUT    - to update Dish fields (TODO: "picture" field (ImageField) not processed correctly in Swagger) </br></br>
 4.  DELETE - to delete Dish </br></br>
 
-model Menu:
-GET methods - no authorization 
-POST, PUT, DELETE - Token authorization 
+model Menu: <br/>
+GET methods - no authorization <br/>
+POST, PUT, DELETE - Token authorization <br/>
 
 1.  GET    - to get Menu details </br></br>
 2.  POST   - to create Menu object (TODO: "dishes" field (ManyToManyField) not processed correctly - Swagger let us use 'name' and 'description' fields only) </br></br>
@@ -83,5 +86,5 @@ POST, PUT, DELETE - Token authorization
 ```bash
 	python manage.py email-report
 ``` 
-2. API only: listing Dishes and Menus can be sorted (by adding parameters to URL, e.g. https://kamhaj-emenu-app.herokuapp.com/api/eMenu/dish/list_dishes/?sort=name )
+2. API only: listing Dishes and Menus can be sorted <br/>(by adding parameters to URL, <br/> e.g. https://kamhaj-emenu-app.herokuapp.com/api/eMenu/dish/list_dishes/?sort=name )
 3. Sqlite3 db was used.
