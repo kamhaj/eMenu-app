@@ -207,3 +207,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ## auto set configurations on heroku
 django_heroku.settings(locals())
+
+
+## settings for running Django tests (requires nose, pinocchio and  django_nose)
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = ['--with-spec', '--spec-color']
