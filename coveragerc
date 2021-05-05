@@ -1,0 +1,5 @@
+[run]
+omit = venv/*
+
+plugins =
+    django_coverage_plugin

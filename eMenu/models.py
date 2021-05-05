@@ -33,7 +33,7 @@ class Dish(models.Model):
         
     ## return it in a way you want it to be printed out   
     def __str__(self):
-        return f'Dish: {self.name}'
+        return f'{self.name}'
 
     # can add checks/constraints like price_in_dollars > 0
 
@@ -52,4 +52,4 @@ class Menu(models.Model):
         
     ## return it in a way you want it to be printed out   
     def __str__(self):
-        return f'Menu: {self.name}'
+        return f'{self.name}'
