@@ -2,7 +2,7 @@
 {% block content %}
     {% for dish in dishes %}
         <article class="media content-section">
-           <!--<img class = "rounded-circle article-img" src="{{ dish.picture.url }}"  style="max-width:150px"> -->
+            <img class = "rounded-circle article-img" src="{{ dish.picture.url }}"  style="max-width:150px">
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ dish.name }}</a>
