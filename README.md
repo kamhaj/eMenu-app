@@ -1,7 +1,7 @@
 # Application using API calls <br/> to display/create/edit/delete restaurant menus online. </br></br>
 
 <br/><br/>
-# Deployed on Heroku: 
+# Deployed on Heroku (look at navbar for possible further steps): 
 ## **https://kamhaj-emenu-app.herokuapp.com**
 
 <br/><br/>
