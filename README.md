@@ -90,3 +90,7 @@ POST, PUT, DELETE - Token authorization <br/>
 ``` 
 2. API only: listing Dishes and Menus can be sorted <br/>(by adding parameters to URL, <br/> e.g. https://kamhaj-emenu-app.herokuapp.com/api/eMenu/dish/list_dishes/?sort=name )
 3. Sqlite3 db was used.
+
+<br/><br/><br/><br/>
+## TODO
+- add pagination
