@@ -42,7 +42,7 @@ class Menu(models.Model):
     name = models.CharField(max_length=60, unique=True)     # could be a primary key
     description = models.CharField(max_length=200)
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
-    edition_date = models.DateTimeField(blank=True, null=True)
+    edition_date = models.DateTimeField(default=timezone.now, editable=True)
     dishes = models.ManyToManyField(Dish)           # TODO if Dish gets deleted it can lead to empty Menu. We should do sth about it?
 
     ## change edition date (e.g. on update)

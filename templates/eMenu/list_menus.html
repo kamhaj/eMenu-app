@@ -4,10 +4,22 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ menu.name }}</a>
+                    <a class="mr-2" href="#">MENU: {{ menu.name }}</a> 
 					<small class="text-muted">{{ menu.description }}</small>
+					<br/> <br/> <br/>
+					{% for dish in menu.dishes.all %}
+					<div class="article-metadata">
+						 <a class="mr-2" href="#">{{ forloop.counter }}. {{ dish.name }}</a>
+						<small class="text-muted">{{ dish.description }}</small> <br/>
+						<small class="text-muted">Price: {{ dish.price_in_dollars }}$</small>  <br/>
+						<small class="text-muted">Time to prepare:{{ dish.minutes_to_prepare }} minutes</small>  <br/>
+						<small class="text-muted">Vegetarian: {% if dish.is_vegetarian == True %} Yes {% else %} No {% endif %}</small>
+						<br/> <br/>
+					</div>
+					{% endfor %}
                 </div>
             </div>
         </article>
+		<br/> <br/><br/> <br/>
     {% endfor %}
 {% endblock content %}
