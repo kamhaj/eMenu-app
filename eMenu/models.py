@@ -19,7 +19,7 @@ class Dish(models.Model):
 
     ## override parent class save method so we can resize images
     ## TODO - delete old, unused picture
-    def save(self):
+    def save(self, *args, **kwargs):
         super().save()
 
         ## open current Profile instance's picture
