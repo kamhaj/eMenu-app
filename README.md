@@ -77,7 +77,7 @@ POST, PUT, DELETE - Token authorization
 ```
 
 
-
+<br/><br/><br/><br/>
 ## Additional info:
 1. Periodic task (emails sending) can be run on demand (as Django custom command)
 ```bash
