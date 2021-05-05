@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from PIL import Image
 
 class Dish(models.Model):
     name = models.CharField(max_length=60)
@@ -17,6 +17,20 @@ class Dish(models.Model):
         self.edition_date = timezone.now()
         self.save()
 
+    ## override parent class save method so we can resize images
+    ## TODO - delete old, unused picture
+    def save(self):
+        super().save()
+
+        ## open current Profile instance's picture
+        img =  Image.open(self.picture.path)
+
+        ## resize if too big
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.picture.path)   ## save to the same path
+        
     ## return it in a way you want it to be printed out   
     def __str__(self):
         return f'Dish: {self.name}'
