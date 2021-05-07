@@ -12,5 +12,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     re_path(r'^dish/list_dishes/$', views.list_dishes, name='list_dishes'), 
-    re_path(r'^dish/list_menus/$', views.list_menus, name='list_menus'), 
+    re_path(r'^menu/list_menus/$', views.list_menus, name='list_menus'), 
 ]
