@@ -10,6 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status, generics, viewsets
+from rest_framework.parsers import FormParser, MultiPartParser
 
 
 ## list all existing dishes (all in database, menus irrelevant)
@@ -71,6 +72,7 @@ class DishCreateView(generics.CreateAPIView):
     serializer_class = DishSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]	            # will deny permission to any unauthenticated user
+    parser_classes = (FormParser, MultiPartParser)
 
     ## create one object
     def create(self, request, *args, **kwargs):
@@ -88,6 +90,7 @@ class DishView(generics.GenericAPIView):
     serializer_class = DishSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]	            # will deny permission to any unauthenticated user
+    parser_classes = (FormParser, MultiPartParser)      #  both FormParser and MultiPartParser together in order to fully support HTML form data.
 
     ## update one object (as a whole; use patch for partial update)
     def put(self, request, pk, format=None):
@@ -101,6 +104,7 @@ class DishView(generics.GenericAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     ## delete one object
+    # TODO - remove unused old picture from static folder so it wont take space
     def delete(self, request, pk, format=None):
         dish_instance = get_object_or_404(Dish, pk=pk)
         dish_instance.delete()
@@ -119,7 +123,7 @@ class MenuCreateView(generics.CreateAPIView):
         serializer = MenuSerializer(data=request.data)
         # validate user input, save to db if ok, return errors if not
         if serializer.is_valid():
-            serializer.save()
+            serializer.create(request.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -129,7 +133,6 @@ class MenuView(generics.GenericAPIView):
     serializer_class = MenuSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]	            # will deny permission to any unauthenticated user
-
 
     ## update one object (as a whole; use patch for partial update)
     def put(self, request, pk, format=None):

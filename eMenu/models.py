@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils import timezone
 from PIL import Image
+import os
+
+STATIC_FILES_PATH = os.path.join(os.getcwd(), 'media/dishes')
+
 
 class Dish(models.Model):
     name = models.CharField(max_length=60)
@@ -17,8 +21,8 @@ class Dish(models.Model):
         self.edition_date = timezone.now()
         self.save()
 
+
     ## override parent class save method so we can resize images
-    ## TODO - delete old, unused picture
     def save(self, *args, **kwargs):
         super().save()
 
