@@ -33,9 +33,9 @@ POST, PUT, DELETE - Token authorization <br/>
 1.  GET    - to get Menu details </br></br>
 2.  GET    - to get Menus list (non empty, meaning - with at least one Dish) </br></br>
 3.  POST   - to create Menu object, Dish objects added by specifying a list of their IDs </br> 
-	(e.g. dishes: [{"pk":1}, {"pk": 3}, {"pk": 7}]   </br></br>
+	(e.g. dishes: [{"pk":1}, {"pk": 3}, {"pk": 6}]  )   </br></br>
 4.  PUT    - to update Menu fields, Dish objects added by specifying a list of their IDs </br> 
-	(e.g. dishes: [{"pk":1}, {"pk": 3}, {"pk": 7}]. Old dishes will be removed.  </br></br>
+	(e.g. dishes: [{"pk":1}, {"pk": 3}, {"pk": 7}].   Old dishes will be removed).  </br></br>
 5.  DELETE - to delete Menu </br></br>
 
 <br/><br/><br/><br/>
