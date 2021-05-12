@@ -38,17 +38,17 @@ class DishSerializer(serializers.ModelSerializer):
         # get picture if it was provided (its not a required field since it has a 'default.jpg')
         image = validated_data.get('picture', None)
 
-        # remove unused old picture from static folder so it wont take space
-        if image: 
-            # # remove old picture (if not default) and attach a new one to Dish's picture field
-            # if 'default.jpg' not in dish_instance.picture.url:
-            #     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-            #     my_file = os.path.join(THIS_FOLDER, dish_instance.picture.url)
-            #     try:
-            #         os.remove(my_file)     # TODO - error msg: No such file or directory: 'C:\\Users\\Kamil\\Desktop\\GIT_repos\\eMenu-app\\media\\dishes\\123_cp3ZRKr.PNG'
-            #     except:
-            #         pass
-            dish_instance.picture = image
+        # # remove unused old picture from static folder so it wont take space
+        # if image: 
+        #     # remove old picture (if not default) and attach a new one to Dish's picture field
+        #     if 'default.jpg' not in dish_instance.picture.url:
+        #         THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        #         my_file = os.path.join(THIS_FOLDER, dish_instance.picture.url)
+        #         try:
+        #             os.remove(my_file)     # TODO - error msg: No such file or directory: 'C:\\Users\\Kamil\\Desktop\\GIT_repos\\eMenu-app\\media\\dishes\\123_cp3ZRKr.PNG'
+        #         except:
+        #             pass
+        #     dish_instance.picture = image
 
         # save instance to db
         dish_instance.save()

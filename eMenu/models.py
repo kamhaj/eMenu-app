@@ -27,9 +27,15 @@ class Dish(models.Model):
     def save(self, *args, **kwargs):
         super().save()
         quality_val=100
+        img=""
         
         ## open current Profile instance's picture (beware that random sufix was added to oryginal filename)
-        img =  Image.open(self.picture.path)
+        try:
+            img =  Image.open(self.picture.path)
+        except: # if file not found for any reason, set up a default image
+            img = self.__class__._meta.get_field('picture').default
+            self.picture = self.__class__._meta.get_field('picture').default
+            return
 
         ## resize if too big
         if img.height > 300 or img.width > 300:
