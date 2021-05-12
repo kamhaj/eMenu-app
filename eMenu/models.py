@@ -3,6 +3,7 @@ from django.utils import timezone
 from PIL import Image
 import os
 
+
 STATIC_FILES_PATH = os.path.join(os.getcwd(), 'media/dishes')
 
 
@@ -25,15 +26,16 @@ class Dish(models.Model):
     ## override parent class save method so we can resize images
     def save(self, *args, **kwargs):
         super().save()
-
-        ## open current Profile instance's picture
+        quality_val=100
+        
+        ## open current Profile instance's picture (beware that random sufix was added to oryginal filename)
         img =  Image.open(self.picture.path)
 
         ## resize if too big
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.picture.path)   ## save to the same path
+            img.thumbnail(output_size, Image.ANTIALIAS)
+            img.save(self.picture.path, quality=quality_val)   ## save to the same path
         
     ## return it in a way you want it to be printed out   
     def __str__(self):
