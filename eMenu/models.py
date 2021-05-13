@@ -33,7 +33,6 @@ class Dish(models.Model):
         try:
             img =  Image.open(self.picture.path)
         except: # if file not found for any reason, set up a default image
-            img = self.__class__._meta.get_field('picture').default
             self.picture = self.__class__._meta.get_field('picture').default
             return
 
